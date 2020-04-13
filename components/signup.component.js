@@ -3,10 +3,12 @@ import { View, TextInput, StyleSheet, Image, Text , TouchableWithoutFeedback, Ke
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 
-export function SingIn(){
+export function SingUp(){
 
+    const [ fullname, setFullname ] = useState('');
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
+    const [ passwordConfirmation, setPasswordConfirmation ] = useState('');
 
     const handleSubmit = () => {
         console.log(`The email and password are: ${email}: ${password}`);
@@ -19,7 +21,16 @@ export function SingIn(){
     return(
         <TouchableWithoutFeedback onPress={ () => Keyboard.dismiss()}>
             <View style={styles.container}>
-                <Image source={require('../assets/images/logo.png')} style={styles.logo}/>
+                <View style={styles.inputContainer}>
+                <SimpleLineIcons name='user' size={22} style={styles.icon}/>
+                    <TextInput
+                        style={styles.formInput}
+                        onChangeText={fullname => setFullname(fullname)}
+                        placeholder='Fullname'
+                        placeholderTextColor='rgba(255, 255, 255, 0.5)'
+                        value={fullname}
+                    />
+                </View>
                 <View style={styles.inputContainer}>
                     <MaterialCommunityIcons name='email-outline' size={22} style={styles.icon}/>
                     <TextInput
@@ -41,11 +52,22 @@ export function SingIn(){
                         value={password}
                     />
                 </View>
+                <View style={styles.inputContainer}>
+                    <SimpleLineIcons name='lock' size={22} style={styles.icon}/>
+                    <TextInput
+                        style={styles.formInput}
+                        secureTextEntry={true}
+                        onChangeText={passwordConfirmation => setPasswordConfirmation(passwordConfirmation)}
+                        placeholder='Password'
+                        placeholderTextColor='rgba(255, 255, 255, 0.5)'
+                        value={passwordConfirmation}
+                    />
+                </View>
                 <TouchableHighlight style={styles.button} onPress={handleSubmit}>
-                    <Text style={styles.buttonText}>SIGN IN</Text>
+                    <Text style={styles.buttonText}>CREATE ACCOUNT</Text>
                 </TouchableHighlight>
                 <TouchableHighlight onPress={goToSignUp}>
-                    <Text style={styles.createAccountText}> Don'thave an account? <Text style={styles.boldText}> Sign Up</Text></Text>
+                    <Text style={styles.createAccountText}> Already have an account? <Text style={styles.boldText}> Login</Text></Text>
                 </TouchableHighlight>
             </View>
         </TouchableWithoutFeedback>
@@ -59,12 +81,6 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center'
-    },
-    logo: {
-        width: '40%',
-        resizeMode: 'contain',
-        maxHeight: 190,
-        marginBottom: 30
     },
     inputContainer: {
         width: '60%',
