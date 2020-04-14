@@ -1,13 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { SingIn } from './screens/signin';
-import { SingUp } from './screens/signup';
+import { SignIn, SignUp } from './screens';
+import AppContainer from './routes';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <SingIn/>
-    </View>
+    <AppContainer/>
   );
 }
 

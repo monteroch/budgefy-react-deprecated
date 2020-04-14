@@ -4,7 +4,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import { formStyles } from '../shared/styles';
 
-export function SingIn(){
+export default function SignIn({ navigation }){
 
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
@@ -45,7 +45,7 @@ export function SingIn(){
                 <TouchableHighlight style={formStyles.button} onPress={handleSubmit}>
                     <Text style={formStyles.buttonText}>SIGN IN</Text>
                 </TouchableHighlight>
-                <TouchableHighlight onPress={goToSignUp}>
+                <TouchableHighlight onPress={ () => navigation.navigate('SignUp') }>
                     <Text style={formStyles.bottomLegend}> Don'thave an account? <Text style={formStyles.boldText}> Sign Up</Text></Text>
                 </TouchableHighlight>
             </View>

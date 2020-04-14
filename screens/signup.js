@@ -4,7 +4,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import { formStyles } from '../shared/styles';
 
-export function SingUp(){
+export default function SignUp({ navigation }){
 
     const [ fullname, setFullname ] = useState('');
     const [ email, setEmail ] = useState('');
@@ -22,7 +22,7 @@ export function SingUp(){
     return(
         <TouchableWithoutFeedback onPress={ () => Keyboard.dismiss()}>
             <View style={formStyles.container}>
-                <View style={formStylesformStyles.inputContainer}>
+                <View style={formStyles.inputContainer}>
                 <SimpleLineIcons name='user' size={22} style={formStyles.icon}/>
                     <TextInput
                         style={formStyles.formInput}
@@ -67,7 +67,7 @@ export function SingUp(){
                 <TouchableHighlight style={formStyles.button} onPress={handleSubmit}>
                     <Text style={formStyles.buttonText}>CREATE ACCOUNT</Text>
                 </TouchableHighlight>
-                <TouchableHighlight onPress={goToSignUp}>
+                <TouchableHighlight onPress={() => navigation.navigate('SignIn')}>
                     <Text style={formStyles.bottomLegend}> Already have an account? <Text style={formStyles.boldText}> Login</Text></Text>
                 </TouchableHighlight>
             </View>
