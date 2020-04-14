@@ -2,6 +2,7 @@ import  React, {useState} from 'react';
 import { View, TextInput, StyleSheet, Image, Text , TouchableWithoutFeedback, Keyboard, TouchableHighlight } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
+import { formStyles } from '../shared/styles';
 
 export function SingUp(){
 
@@ -20,31 +21,31 @@ export function SingUp(){
 
     return(
         <TouchableWithoutFeedback onPress={ () => Keyboard.dismiss()}>
-            <View style={styles.container}>
-                <View style={styles.inputContainer}>
-                <SimpleLineIcons name='user' size={22} style={styles.icon}/>
+            <View style={formStyles.container}>
+                <View style={formStylesformStyles.inputContainer}>
+                <SimpleLineIcons name='user' size={22} style={formStyles.icon}/>
                     <TextInput
-                        style={styles.formInput}
+                        style={formStyles.formInput}
                         onChangeText={fullname => setFullname(fullname)}
                         placeholder='Fullname'
                         placeholderTextColor='rgba(255, 255, 255, 0.5)'
                         value={fullname}
                     />
                 </View>
-                <View style={styles.inputContainer}>
-                    <MaterialCommunityIcons name='email-outline' size={22} style={styles.icon}/>
+                <View style={formStyles.inputContainer}>
+                    <MaterialCommunityIcons name='email-outline' size={22} style={formStyles.icon}/>
                     <TextInput
-                        style={styles.formInput}
+                        style={formStyles.formInput}
                         onChangeText={email => setEmail(email)}
                         placeholder='Email'
                         placeholderTextColor='rgba(255, 255, 255, 0.5)'
                         value={email}
                     />
                 </View>
-                <View style={styles.inputContainer}>
-                    <SimpleLineIcons name='lock' size={22} style={styles.icon}/>
+                <View style={formStyles.inputContainer}>
+                    <SimpleLineIcons name='lock' size={22} style={formStyles.icon}/>
                     <TextInput
-                        style={styles.formInput}
+                        style={formStyles.formInput}
                         secureTextEntry={true}
                         onChangeText={password => setPassword(password)}
                         placeholder='Password'
@@ -52,10 +53,10 @@ export function SingUp(){
                         value={password}
                     />
                 </View>
-                <View style={styles.inputContainer}>
-                    <SimpleLineIcons name='lock' size={22} style={styles.icon}/>
+                <View style={formStyles.inputContainer}>
+                    <SimpleLineIcons name='lock' size={22} style={formStyles.icon}/>
                     <TextInput
-                        style={styles.formInput}
+                        style={formStyles.formInput}
                         secureTextEntry={true}
                         onChangeText={passwordConfirmation => setPasswordConfirmation(passwordConfirmation)}
                         placeholder='Password'
@@ -63,61 +64,13 @@ export function SingUp(){
                         value={passwordConfirmation}
                     />
                 </View>
-                <TouchableHighlight style={styles.button} onPress={handleSubmit}>
-                    <Text style={styles.buttonText}>CREATE ACCOUNT</Text>
+                <TouchableHighlight style={formStyles.button} onPress={handleSubmit}>
+                    <Text style={formStyles.buttonText}>CREATE ACCOUNT</Text>
                 </TouchableHighlight>
                 <TouchableHighlight onPress={goToSignUp}>
-                    <Text style={styles.createAccountText}> Already have an account? <Text style={styles.boldText}> Login</Text></Text>
+                    <Text style={formStyles.bottomLegend}> Already have an account? <Text style={formStyles.boldText}> Login</Text></Text>
                 </TouchableHighlight>
             </View>
         </TouchableWithoutFeedback>
     )
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#282b3a',
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    inputContainer: {
-        width: '60%',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 15
-    },
-    formInput: {
-        borderBottomWidth: 1,
-        borderBottomColor: 'rgba(255, 255, 255, 0.2)',
-        width: '85%',
-        height: 35,
-        color: '#fff'
-    },
-    icon: {
-        color: 'rgba(255, 255, 255, 0.5)',
-        marginRight: 20,
-    },
-    button: {
-        width: '60%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: 35,
-        marginVertical: 20,
-        borderWidth: 1,
-        borderColor: 'rgba(255, 255, 255, 0.5)'
-    },
-    buttonText: {
-        color: 'rgba(255, 255, 255, 0.5)',
-        fontSize: 13
-    },
-    createAccountText: {
-        color: 'rgba(255, 255, 255, 0.5)'
-    },
-    boldText: {
-        color: 'rgba(255, 255, 255, 0.8)',
-        fontWeight: 'bold'
-    }
-});

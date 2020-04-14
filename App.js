@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { SingIn } from './components/signin.component';
-import { SingUp } from './components/signup.component';
+import { SingIn } from './screens/signin';
+import { SingUp } from './screens/signup';
 
 export default function App() {
   return (
