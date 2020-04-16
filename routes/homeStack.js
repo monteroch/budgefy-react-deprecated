@@ -1,5 +1,5 @@
 import { createStackNavigator } from 'react-navigation-stack';
-import { SignIn, SignUp } from '../screens'
+import { SignIn, SignUp, Home } from '../screens'
 
 const screens = {
     SignIn: {
@@ -13,6 +13,13 @@ const screens = {
         screen: SignUp,
         navigationOptions: {
             title: 'Sign Up',
+            headerShown: false
+        }
+    },
+    Home: {
+        screen: Home,
+        navigationOptions: {
+            title: 'Home',
             headerShown: false
         }
     }

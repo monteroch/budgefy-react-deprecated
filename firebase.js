@@ -24,15 +24,28 @@ var firebaseConfig = {
 
   // Initialize Firebase
   export const initFirebase = () => {
-      console.log('Initializing Firebase...');
       if(!firebase.apps.length)
         firebase.initializeApp(firebaseConfig);
   }
 
-  export const storeHighScore = (userId, score) => {
-      console.log("Inside storeHighScore");
-      firebase.database().ref('users/' + userId).set({
-          highscore: score
+  //Save user into db, before creating the user
+  export const saveUserintoDB = (id, fullname, email) => {
+      firebase.database().ref('users/' + id).set({
+          fullname: fullname,
+          email: email
       });
+  };
+
+  //create user
+  export const createUser = (email, password, fullname) => {
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then((response) => {
+        let id = Date.now();
+        console.log(`${email} has been registered`);
+        let uid = response.user.uid;
+        saveUserintoDB(id, fullname, email);
+        return uid;
+    })
+    .catch(error => console.log(error))
   };
 //   firebase.analytics();

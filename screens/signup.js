@@ -3,6 +3,7 @@ import { View, TextInput, StyleSheet, Image, Text , TouchableWithoutFeedback, Ke
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import { formStyles } from '../shared/styles';
+import { createUser } from '../firebase';
 
 export default function SignUp({ navigation }){
 
@@ -13,6 +14,8 @@ export default function SignUp({ navigation }){
 
     const handleSubmit = () => {
         console.log(`The email and password are: ${email}: ${password}`);
+        let uid = createUser(email, password, fullname);
+        navigation.navigate('Home')
     }
 
     const goToSignUp = () => {
