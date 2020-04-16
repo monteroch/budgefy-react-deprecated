@@ -3,6 +3,7 @@ import { View, TextInput, StyleSheet, Image, Text , TouchableWithoutFeedback, Ke
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import { formStyles } from '../shared/styles';
+import { login } from '../firebase';
 
 export default function SignIn({ navigation }){
 
@@ -10,7 +11,8 @@ export default function SignIn({ navigation }){
     const [ password, setPassword ] = useState('');
 
     const handleSubmit = () => {
-        console.log(`The email and password are: ${email}: ${password}`);
+        // console.log(`The email and password are: ${email}: ${password}`);
+        login(email, password);
     }
 
     const goToSignUp = () => {

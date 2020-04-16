@@ -48,4 +48,13 @@ var firebaseConfig = {
     })
     .catch(error => console.log(error))
   };
+
+  export const login = (email, password) => {
+    firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((response) => {
+        let uid = response.uid;
+        return uid;
+    })
+    .catch(error => console.log(error))
+  };
 //   firebase.analytics();
