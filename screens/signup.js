@@ -15,7 +15,11 @@ export default function SignUp({ navigation }){
     const handleSubmit = () => {
         console.log(`The email and password are: ${email}: ${password}`);
         let uid = createUser(email, password, fullname);
-        navigation.navigate('Home')
+        setFullname("");
+        setEmail("");
+        setPassword("");
+        setPasswordConfirmation("");
+        navigation.navigate('Home');
     }
 
     const goToSignUp = () => {

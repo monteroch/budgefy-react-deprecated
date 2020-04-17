@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { SignIn, SignUp } from './screens';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 import AppContainer from './routes';
 import { initFirebase } from './firebase';
 
@@ -11,7 +12,9 @@ export default function App() {
   }, []);
 
   return (
-    <AppContainer/>
+    <Provider store={store}>
+      <AppContainer/>
+    </Provider>
   );
 }
 
