@@ -1,4 +1,5 @@
 import * as firebase from 'firebase';
+import NavigationService from './services/NavigationService';
 import { 
     API_KEY, 
     AUTH_DOMAIN, 
@@ -52,8 +53,9 @@ var firebaseConfig = {
   export const login = (email, password) => {
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then((response) => {
+      console.log("Successful signed in");
         let uid = response.user.uid;
-        return uid;
+        NavigationService.navigate('Home', {uid: uid});
     })
     .catch(error => console.log(error))
   };
