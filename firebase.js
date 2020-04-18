@@ -1,5 +1,4 @@
 import * as firebase from 'firebase';
-import NavigationService from './services/NavigationService';
 import { 
     API_KEY, 
     AUTH_DOMAIN, 

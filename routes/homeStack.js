@@ -1,28 +1,15 @@
-import { createStackNavigator } from 'react-navigation-stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import { SignIn, SignUp, Home } from '../screens'
+import  React from 'react';
 
-const screens = {
-    SignIn: {
-        screen: SignIn,
-        navigationOptions: {
-            title: 'Sign In',
-            headerShown: false
-        }
-    },
-    SignUp: {
-        screen: SignUp,
-        navigationOptions: {
-            title: 'Sign Up',
-            headerShown: false
-        }
-    },
-    Home: {
-        screen: Home,
-        navigationOptions: {
-            title: 'Home',
-            headerShown: false
-        }
-    }
-};
+const HomeStackNavigator = createStackNavigator();
 
-export const HomeStackNavigator = createStackNavigator( screens );
+export function MyStack() {
+    return (
+      <HomeStackNavigator.Navigator>
+        <HomeStackNavigator.Screen name="SignIn" component={SignIn} options={ {headerShown: false} } />
+        <HomeStackNavigator.Screen name="SignUp" component={SignUp} options={ {headerShown: false} } />
+        <HomeStackNavigator.Screen name="Home" component={Home} options={ {headerShown: false} } />
+      </HomeStackNavigator.Navigator>
+    );
+}

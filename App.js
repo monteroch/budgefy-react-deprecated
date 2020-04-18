@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import AppContainer from './routes';
 import { initFirebase } from './firebase';
+
+import { MyStack } from './routes/homeStack';
+import { NavigationContainer } from '@react-navigation/native';
+
 
 export default function App() {
 
@@ -13,7 +16,9 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <AppContainer/>
+      <NavigationContainer>
+        <MyStack/>
+      </NavigationContainer>
     </Provider>
   );
 }
