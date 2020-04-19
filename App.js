@@ -6,6 +6,7 @@ import { initFirebase } from './firebase';
 
 import { MyStack } from './routes/homeStack';
 import { NavigationContainer } from '@react-navigation/native';
+import { navigationRef } from './routes/RootNavigation';
 
 
 export default function App() {
@@ -16,7 +17,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <NavigationContainer>
+      <NavigationContainer ref={navigationRef}>
         <MyStack/>
       </NavigationContainer>
     </Provider>

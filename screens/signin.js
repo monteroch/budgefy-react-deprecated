@@ -20,8 +20,6 @@ export default function SignIn({ navigation }){
         login(email, password);
         setEmail("");
         setPassword("");
-        // dispatch(loginRequest('12345'));
-        // navigation.navigate('Home');
     }
 
     const goToSignUp = () => {

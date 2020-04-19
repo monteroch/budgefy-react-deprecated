@@ -1,4 +1,6 @@
 import * as firebase from 'firebase';
+import * as RootNavigation from './routes/RootNavigation';
+
 import { 
     API_KEY, 
     AUTH_DOMAIN, 
@@ -54,7 +56,7 @@ var firebaseConfig = {
     .then((response) => {
       console.log("Successful signed in");
         let uid = response.user.uid;
-        NavigationService.navigate('Home', {uid: uid});
+        RootNavigation.navigate('Home', { uid: uid });
     })
     .catch(error => console.log(error))
   };

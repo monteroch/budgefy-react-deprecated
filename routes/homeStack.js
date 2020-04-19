@@ -6,10 +6,10 @@ const HomeStackNavigator = createStackNavigator();
 
 export function MyStack() {
     return (
-      <HomeStackNavigator.Navigator>
-        <HomeStackNavigator.Screen name="SignIn" component={SignIn} options={ {headerShown: false} } />
-        <HomeStackNavigator.Screen name="SignUp" component={SignUp} options={ {headerShown: false} } />
-        <HomeStackNavigator.Screen name="Home" component={Home} options={ {headerShown: false} } />
+      <HomeStackNavigator.Navigator initialRouteName='SignIn'>
+        <HomeStackNavigator.Screen name='SignIn' component={SignIn} options={ {headerShown: false} } />
+        <HomeStackNavigator.Screen name='SignUp' component={SignUp} options={ {headerShown: false} } />
+        <HomeStackNavigator.Screen name='Home' component={Home} options={ {headerShown: false} } />
       </HomeStackNavigator.Navigator>
     );
 }
