@@ -31,8 +31,8 @@ var firebaseConfig = {
   }
 
   //Save user into db, before creating the user
-  export const saveUserintoDB = (id, fullname, email) => {
-      firebase.database().ref('users/' + id).set({
+  export const saveUserintoDB = (uid, fullname, email) => {
+      firebase.database().ref('users/' + uid).set({
           fullname: fullname,
           email: email
       });
@@ -42,11 +42,10 @@ var firebaseConfig = {
   export const createUser = (email, password, fullname) => {
     firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((response) => {
-        let id = Date.now();
         console.log(`${email} has been registered`);
         let uid = response.user.uid;
-        saveUserintoDB(id, fullname, email);
-        return uid;
+        saveUserintoDB(uid, fullname, email);
+        RootNavigation.navigate('Home', { uid: uid });
     })
     .catch(error => console.log(error))
   };

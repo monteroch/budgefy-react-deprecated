@@ -19,7 +19,6 @@ export default function SignUp({ navigation }){
         setEmail("");
         setPassword("");
         setPasswordConfirmation("");
-        navigation.navigate('Home');
     }
 
     const goToSignUp = () => {
