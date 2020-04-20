@@ -2,7 +2,7 @@ import  React, {useState} from 'react';
 import { View, Text, StyleSheet, ImageBackground  } from 'react-native';
 import { useSelector, useDispatch } from "react-redux";
 
-export default function Home({ navigation, route }){
+export default function Dashboard({ navigation, route }){
 
     const uid = route.params.uid;
 

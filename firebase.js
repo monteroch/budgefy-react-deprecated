@@ -45,7 +45,7 @@ var firebaseConfig = {
         console.log(`${email} has been registered`);
         let uid = response.user.uid;
         saveUserintoDB(uid, fullname, email);
-        RootNavigation.navigate('Home', { uid: uid });
+        RootNavigation.navigate('Dashboard', { uid: uid });
     })
     .catch(error => console.log(error))
   };
@@ -55,7 +55,7 @@ var firebaseConfig = {
     .then((response) => {
       console.log("Successful signed in");
         let uid = response.user.uid;
-        RootNavigation.navigate('Home', { uid: uid });
+        RootNavigation.navigate('Dashboard', { uid: uid });
     })
     .catch(error => console.log(error))
   };
