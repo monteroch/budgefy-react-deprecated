@@ -80,7 +80,8 @@ export default function Dashboard({ navigation, route }){
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        backgroundColor: 'red'
     },
     bgImage: {
         width: '100%',
