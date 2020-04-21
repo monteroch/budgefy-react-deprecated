@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export const formStyles = StyleSheet.create({
+export const global = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#282b3a',
@@ -51,5 +51,9 @@ export const formStyles = StyleSheet.create({
     boldText: {
         color: 'rgba(255, 255, 255, 0.8)',
         fontWeight: 'bold'
+    },
+    centerItems: {
+        alignItems: 'center',
+        margin: 10
     }
 });

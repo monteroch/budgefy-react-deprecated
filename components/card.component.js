@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 
 export default function Card(props){
     return(
-        <View style={styles.card, props.width? styles.custom : styles.card}>
+        <View style={[styles.card, props.width ? {minWidth: props.width} : styles.default]}>
             <View style={styles.cardContent}>
                 { props.children }
             </View>
@@ -22,11 +22,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 18,
         marginVertical: 20
     },
-    custom: {
-        width: 100,
-        borderRadius: 6,
-        backgroundColor: 'rgba(0, 0, 0, 0.4)',
-        marginHorizontal: 4,
-        marginVertical: 6
+    default: {
+        
     }
 });

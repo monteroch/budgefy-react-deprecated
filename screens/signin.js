@@ -3,7 +3,7 @@ import { View, TextInput, StyleSheet, Image, Text , TouchableWithoutFeedback, Ke
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import { useDispatch, useSelector } from "react-redux";
-import { formStyles } from '../shared/styles';
+import { global } from '../shared/styles';
 import { login } from '../firebase';
 import { loginRequest } from '../redux/actions/index';
 
@@ -28,22 +28,22 @@ export default function SignIn({ navigation }){
 
     return(
         <TouchableWithoutFeedback onPress={ () => Keyboard.dismiss()}>
-            <View style={formStyles.container}>
+            <View style={global.container}>
                 <Image source={require('../assets/images/logo.png')} style={styles.logo}/>
-                <View style={formStyles.inputContainer}>
-                    <MaterialCommunityIcons name='email-outline' size={22} style={formStyles.icon}/>
+                <View style={global.inputContainer}>
+                    <MaterialCommunityIcons name='email-outline' size={22} style={global.icon}/>
                     <TextInput
-                        style={formStyles.formInput}
+                        style={global.formInput}
                         onChangeText={email => setEmail(email)}
                         placeholder='Email'
                         placeholderTextColor='rgba(255, 255, 255, 0.5)'
                         value={email}
                     />
                 </View>
-                <View style={formStyles.inputContainer}>
-                    <SimpleLineIcons name='lock' size={22} style={formStyles.icon}/>
+                <View style={global.inputContainer}>
+                    <SimpleLineIcons name='lock' size={22} style={global.icon}/>
                     <TextInput
-                        style={formStyles.formInput}
+                        style={global.formInput}
                         secureTextEntry={true}
                         onChangeText={password => setPassword(password)}
                         placeholder='Password'
@@ -51,11 +51,11 @@ export default function SignIn({ navigation }){
                         value={password}
                     />
                 </View>
-                <TouchableHighlight style={formStyles.button} onPress={handleSubmit}>
-                    <Text style={formStyles.buttonText}>SIGN IN</Text>
+                <TouchableHighlight style={global.button} onPress={handleSubmit}>
+                    <Text style={global.buttonText}>SIGN IN</Text>
                 </TouchableHighlight>
                 <TouchableHighlight onPress={ () => navigation.navigate('SignUp') }>
-                    <Text style={formStyles.bottomLegend}> Don'thave an account? <Text style={formStyles.boldText}> Sign Up</Text></Text>
+                    <Text style={global.bottomLegend}> Don'thave an account? <Text style={global.boldText}> Sign Up</Text></Text>
                 </TouchableHighlight>
             </View>
         </TouchableWithoutFeedback>
