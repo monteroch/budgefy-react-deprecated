@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         backgroundColor: 'rgba(0, 0, 0, 0.4)',
         marginHorizontal: 4,
-        marginVertical: 6
+        marginVertical: 6,
     },
     cardContent: {
         marginHorizontal: 18,
