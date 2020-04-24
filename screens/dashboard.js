@@ -1,7 +1,7 @@
 import  React, {useState} from 'react';
 import { View, Text, StyleSheet, ImageBackground, VirtualizedList, ScrollView } from 'react-native';
 import { useSelector, useDispatch } from "react-redux";
-import { Card } from '../components'
+import { Card, AccountsList } from '../components'
 import { global } from '../shared/styles';
 import { database } from 'firebase';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -42,26 +42,38 @@ export default function Dashboard({ navigation, route }){
         },
       ];
 
+      const accounts = [
+          {
+            name: 'Banamex',
+            id: '00001',
+            balance: 2000
+          },
+          {
+            name: 'HSBC',
+            id: '00002',
+            balance: 3000
+        },
+        {
+            name: 'Amex',
+            id: '00003',
+            balance: 7000
+        },
+        {
+            name: 'Bancomer',
+            id: '00004',
+            balance: 4000
+        },
+        {
+            name: 'Cash',
+            id: '00005',
+            balance: 700
+        },
+      ]
+
     return(
         <ImageBackground source={require('../assets/images/bg2.jpg')} style={styles.container} blurRadius={2}>
         <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
-            <Card width={380}>
-                <Text style={styles.cardTitle}>List of accounts</Text>
-                <View style={styles.accountsContainer}>
-                    <Card style={styles.accountItem} width={100}>
-                        <Text style={styles.cardTitle}>Banamex</Text>
-                        <Text style={styles.cardTitle}>$2000</Text>
-                    </Card>
-                    <Card style={styles.accountItem} width={100}>
-                        <Text style={styles.cardTitle}>HSBC</Text>
-                        <Text style={styles.cardTitle}>$3000</Text>
-                    </Card>
-                    <Card style={styles.accountItem} width={100}>
-                        <Text style={styles.cardTitle}>AMEX</Text>
-                        <Text style={styles.cardTitle}>$7000</Text>
-                    </Card>
-                </View>
-            </Card>
+            <AccountsList accounts={accounts}/>
             <Card width={380}>
                 <View>
                     <Text style={styles.balanceTitle}>Balance</Text>
@@ -115,12 +127,13 @@ const styles = StyleSheet.create({
         color: 'rgb(255, 255, 255)',
         marginBottom: 10
     },
-    accountsContainer: {
+    accountsScroll: {
         flexDirection: 'row',
-        justifyContent: 'center'
+        width: 340,
+        alignSelf:'center'
     },
     accountItem: {
-        width: 100
+        width: 10
     },
     balanceTitle: {
         color: 'rgb(255, 255, 255)'
@@ -172,3 +185,5 @@ const styles = StyleSheet.create({
     }
 
 });
+
+{/* https://medium.com/@rossbulat/react-native-carousels-with-horizontal-scroll-views-60b0587a670c */}
