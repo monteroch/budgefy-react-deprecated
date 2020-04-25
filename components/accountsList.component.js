@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, ScrollView } from 'react-native';
-import { Card } from './index';
+import Card from './card.component';
 
 export default function AccountsList({accounts}){
     return(
