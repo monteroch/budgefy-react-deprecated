@@ -55,5 +55,8 @@ export const global = StyleSheet.create({
     centerItems: {
         alignItems: 'center',
         margin: 10
+    },
+    textMainColor: {
+        color: 'rgb(255, 255, 255)'
     }
 });

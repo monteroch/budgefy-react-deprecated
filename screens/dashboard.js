@@ -73,7 +73,7 @@ export default function Dashboard({ navigation, route }){
     return(
         <ImageBackground source={require('../assets/images/bg2.jpg')} style={styles.container} blurRadius={2}>
         <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
-            <AccountsList accounts={accounts}/>
+            <AccountsList accounts={null}/>
             <Balance balance={"13000"}/>
             <RecordsList records={records}/>
             <Text>{ uid }</Text>
