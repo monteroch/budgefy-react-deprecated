@@ -4,7 +4,7 @@ import Card from './card.component';
 import { global }  from '../shared/styles';
 import { MaterialIcons } from '@expo/vector-icons';
 
-export default function AccountsList({accounts}){
+export default function AccountsList({accounts, toogleModal}){
     
     const addAcount = () => {
         console.log('Adding account');
@@ -30,7 +30,7 @@ export default function AccountsList({accounts}){
                 <View style={styles.emptyAccountsContainer}>
                     <Text style={[global.textMainColor, styles.addAccountTitle]}>Add account?</Text>
                     <TouchableHighlight style={styles.buttonContainer} onPress={ addAcount }>
-                        <MaterialIcons name='add' size={26} style={[ styles.addAccountIcon, global.textMainColor]}/>
+                        <MaterialIcons name='add' size={26} onPress={() => toogleModal(true)} style={[ styles.addAccountIcon, global.textMainColor]}/>
                     </TouchableHighlight>
                 </View>
             </Card>

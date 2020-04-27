@@ -1,7 +1,7 @@
 import  React, {useState} from 'react';
-import { View, Text, StyleSheet, ImageBackground, VirtualizedList, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground, ScrollView, Modal } from 'react-native';
 import { useSelector, useDispatch } from "react-redux";
-import { Card, AccountsList, Balance, RecordsList } from '../components'
+import { Card, AccountsList, Balance, RecordsList, CustomModal } from '../components'
 import { global } from '../shared/styles';
 import { database } from 'firebase';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -10,6 +10,11 @@ import { MaterialIcons } from '@expo/vector-icons';
 export default function Dashboard({ navigation, route }){
 
     const uid = route.params.uid;
+    const [modalStatus, setModalStatus ] = useState(false);
+
+    const toogleModal = (status) => {
+        setModalStatus(status);
+    }
 
     const records = [
         {
@@ -72,11 +77,14 @@ export default function Dashboard({ navigation, route }){
 
     return(
         <ImageBackground source={require('../assets/images/bg2.jpg')} style={styles.container} blurRadius={2}>
-        <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
-            <AccountsList accounts={null}/>
-            <Balance balance={"13000"}/>
-            <RecordsList records={records}/>
-            <Text>{ uid }</Text>
+            <CustomModal modalStatus={modalStatus} setModalStatus={setModalStatus} title="Add account">
+                <Text>This is my modal prroooooo</Text>
+            </CustomModal>
+            <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
+                <AccountsList accounts={null} toogleModal={toogleModal}/>
+                <Balance balance={"13000"}/>
+                <RecordsList records={records}/>
+                <Text>{ uid }</Text>
             </ScrollView>
         </ImageBackground>
     )
@@ -93,21 +101,9 @@ const styles = StyleSheet.create({
     scrollContainer: {
         paddingTop: 10
     },
-    cardTitle: {
-        color: 'rgb(255, 255, 255)',
-        marginBottom: 10
-    },
-    accountsScroll: {
-        flexDirection: 'row',
-        width: 340,
-        alignSelf:'center'
-    },
-    accountItem: {
-        width: 10
-    },
     listContainer: {
         flexGrow: 1
-    },
+    }
 });
 
 {/* https://medium.com/@rossbulat/react-native-carousels-with-horizontal-scroll-views-60b0587a670c */}
