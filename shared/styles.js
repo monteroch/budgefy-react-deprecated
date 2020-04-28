@@ -58,5 +58,39 @@ export const global = StyleSheet.create({
     },
     textMainColor: {
         color: 'rgb(255, 255, 255)'
+    },
+    modalFormContainer: {
+    },
+    modalInputContainer: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 15
+    },
+    modalFormIcon: {
+        color: 'rgb(0, 0, 0)',
+        fontSize: 25,
+        marginRight: 10
+    },
+    modalTextInput: {
+        borderWidth: 1,
+        borderColor: 'rgba(0, 0, 0, 0.3)',
+        height: 40,
+        width: '85%',
+        padding: 5
+    },
+    modalButton:{
+        width: '80%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 35,
+        marginVertical: 10,
+        backgroundColor: 'rgb(102,125,142)',
+        alignSelf: 'center'
+    },
+    modalButtonText: {
+        color: 'rgb(255, 255, 255)',
+        fontSize: 13
     }
 });
