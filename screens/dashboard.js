@@ -1,25 +1,17 @@
 import  React, {useState} from 'react';
 import { View, Text, StyleSheet, ImageBackground, ScrollView, TextInput, TouchableHighlight } from 'react-native';
 import { useSelector, useDispatch } from "react-redux";
-import { Card, AccountsList, Balance, RecordsList, CustomModal } from '../components'
-import { global } from '../shared/styles';
+import { Card, AccountsList, Balance, RecordsList, CustomModal, AccountForm } from '../components'
 import { database } from 'firebase';
-import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 
 
 export default function Dashboard({ navigation, route }){
 
     const uid = route.params.uid;
     const [modalStatus, setModalStatus ] = useState(false);
-    const [ accountName, setAccountName ] = useState('');
-    const [ accountNumber, setAccountNumber ] = useState('');
 
     const toogleModal = (status) => {
         setModalStatus(status);
-    }
-
-    const handleSubmit = () =>{
-        console.log("Button has been pressed");
     }
 
     const records = [
@@ -84,31 +76,7 @@ export default function Dashboard({ navigation, route }){
     return(
         <ImageBackground source={require('../assets/images/bg2.jpg')} style={styles.container} blurRadius={2}>
             <CustomModal modalStatus={modalStatus} setModalStatus={setModalStatus} title="Add account">
-                <View style={global.modalFormContainer}>
-                    <View style={global.modalInputContainer}>
-                        <SimpleLineIcons name='tag' size={22} style={global.modalFormIcon}/>
-                        <TextInput
-                            style={global.modalTextInput}
-                            onChangeText={accountName => setAccountName(accountName)}
-                            placeholder='Account name'
-                            placeholderTextColor='rgba(0, 0, 0, 0.8)'
-                            value={accountName}
-                        />
-                    </View>
-                    <View style={global.modalInputContainer}>
-                        <SimpleLineIcons name='credit-card' size={22} style={global.modalFormIcon}/>
-                        <TextInput
-                            style={global.modalTextInput}
-                            onChangeText={accountNumber => setAccountNumber(accountNumber)}
-                            placeholder='Account number'
-                            placeholderTextColor='rgba(0, 0, 0, 0.8)'
-                            value={accountNumber}
-                        />
-                    </View>
-                    <TouchableHighlight style={global.modalButton} onPress={handleSubmit}>
-                        <Text style={global.modalButtonText}>ADD ACCOUNT</Text>
-                    </TouchableHighlight>
-                </View>
+                <AccountForm/>
             </CustomModal>
             <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
                 <AccountsList accounts={null} toogleModal={toogleModal}/>

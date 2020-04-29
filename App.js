@@ -8,7 +8,6 @@ import { MyStack } from './routes/homeStack';
 import { NavigationContainer } from '@react-navigation/native';
 import { navigationRef } from './routes/RootNavigation';
 
-
 export default function App() {
 
   useEffect(() => {
