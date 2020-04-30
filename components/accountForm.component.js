@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableHighlight, Picker, TouchableWithoutFeedback } from 'react-native';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import { global } from '../shared/styles';
+import Select from './select.component';
 
 export default function AccountForm(){
 
@@ -17,16 +18,7 @@ export default function AccountForm(){
     return(
         <View style={global.modalFormContainer}>
             <View style={global.modalInputContainer}>
-                <Text>Type</Text>           
-                <Picker
-                    mode="dropdown"
-                    style={styles.select}
-                    onValueChange={(accountType) => setAccountType(accountType)}
-                    >
-                    <Picker.Item label="Java" value="js" />
-                    <Picker.Item label="JavaScript" value="js" />
-                    <Picker.Item style={{color: 'red'}} label="Python" value="py" />
-                </Picker> 
+                <Select/>
             </View>
             <View style={global.modalInputContainer}>
                 <SimpleLineIcons name='tag' size={22} style={global.modalFormIcon}/>
