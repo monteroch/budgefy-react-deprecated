@@ -75,7 +75,7 @@ export default function Dashboard({ navigation, route }){
 
     return(
         <ImageBackground source={require('../assets/images/bg2.jpg')} style={styles.container} blurRadius={2}>
-            <CustomModal modalStatus={modalStatus} setModalStatus={setModalStatus} title="Add account">
+            <CustomModal modalStatus={modalStatus} setModalStatus={setModalStatus} title="Add account" fixed={true}>
                 <AccountForm/>
             </CustomModal>
             <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>

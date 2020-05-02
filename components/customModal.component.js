@@ -2,10 +2,10 @@ import React from 'react';
 import { Modal, View, Text, StyleSheet } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
-export default function CustomModal({ modalStatus, setModalStatus, title, children}){
+export default function CustomModal({ modalStatus, setModalStatus, title, children, fixed}){
     return(
         <Modal visible={modalStatus} animationType='slide' transparent={true}>
-            <View style={styles.outterContainer}>
+            <View style={fixed ? styles.outterContainerFixed : styles.outterContainer}>
                 <View style={styles.innerContainer}>
                     <View style={styles.modalTitleBar}>
                         <Text style={styles.title}>{ title }</Text>
@@ -27,6 +27,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         height: '100%'
+    },
+    outterContainerFixed: {
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        alignItems: 'center',
+        height: '100%',
+        paddingTop: '25%'
     },
     innerContainer: {
         backgroundColor: 'rgb(255, 255, 255)',
