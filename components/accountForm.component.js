@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableHighlight, Picker, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableHighlight, Picker } from 'react-native';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import { global } from '../shared/styles';
-import Select from './select.component';
 
 export default function AccountForm(){
 
+    const accountTypes = ['credit-card', 'savings-account', 'cash', 'market-coupons'];
+
     const [ accountName, setAccountName ] = useState('');
     const [ accountNumber, setAccountNumber ] = useState('');
-    const [ accountType, setAccountType ] = useState('Select');
-    const [ placeholder, showPlaceholder ] = useState(true);
+    const [ accountType, setAccountType ] = useState('cash');
 
     const handleSubmit = () =>{
         console.log("Button has been pressed");
@@ -18,7 +18,20 @@ export default function AccountForm(){
     return(
         <View style={global.modalFormContainer}>
             <View style={global.modalInputContainer}>
-                <Select/>
+                <View style={styles.pickerWrapper}>
+                    <Picker
+                        style={styles.pickerStyle}
+                        itemStyle={styles.pickerItem}
+                        selectedValue={accountType}
+                        onValueChange={(value) => setAccountType(value)}
+                    >
+                        {
+                            accountTypes.map((type, index) => (
+                                <Picker.Item key={index} label={type} value={type} />
+                            ))
+                        }
+                    </Picker>
+                </View>
             </View>
             <View style={global.modalInputContainer}>
                 <SimpleLineIcons name='tag' size={22} style={global.modalFormIcon}/>
@@ -49,13 +62,24 @@ export default function AccountForm(){
 };
 
 const styles = StyleSheet.create({
-    select: {
-        color: 'rgb(0, 0, 0)',
-        width: '80%',
+    pickerWrapper: {
+        width: '85%',
+        padding: 5,
+        borderWidth: 1,
+        borderColor: 'rgba(0, 0, 0, 0.3)',
+        height: 40
+    },
+    pickerStyle: {
+        width: '100%',
         borderWidth: 1,
         borderColor: 'red',
-        color: 'red',
-        alignSelf: 'flex-end'
+        height: 40,
+        margin: 5,
+        color: 'black'
+    },
+    pickerItem:{
+        width: '80%',
+        color: 'red'
     }
 });
 

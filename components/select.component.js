@@ -7,27 +7,26 @@ export default function Select(){
     const [ status, setStatus ] = useState(false);
     const [ select, setSelect ] = useState(false);
     // let heightValue = new Animated.Value(1); // declare an animated value [1]
-    const heightValue = useState(new Animated.Value(1))[0];
+    const heightValue = useState(new Animated.Value(0))[0];
 
     const toogleAnimation = () => {
         console.log(select);
         if(!select){
             Animated.timing(heightValue, {
-                toValue: 2,
-                duration: 700,
-                useNativeDriver: true,
+                toValue: 80,
+                duration: 1000,
             }).start(() => setSelect(true));
         }else{
             Animated.timing(heightValue, {
-                toValue: 1,
-                duration: 700,
-                useNativeDriver: true,
-            }).start(() => setSelect(false));
+                toValue: 0,
+                duration: 1000,
+            }).start();
+            setSelect(false);
         }
     };
 
     const animatedStyle = {
-        transform: [{scaleY: heightValue}]
+        height: heightValue
     };
 
     return(
@@ -36,10 +35,22 @@ export default function Select(){
                 <View style={styles.selectIconContainer}>
                     <SimpleLineIcons name='arrow-down' size={22} style={styles.arrowIcon}/>
                 </View>
-                <Animated.View style={[styles.selectContentContainer, animatedStyle]}>
+                <Animated.View style={styles.selectContentContainer}>
                     <View>
                         <Text style={styles.placeholder}>Select an option</Text>
                     </View>
+                    <Animated.View style={[styles.selectOptionsContainer, animatedStyle]}>
+                        {
+                            (select)?(
+                                <View>
+                                    <Text style={styles.placeholder}>Option 1</Text>
+                                    <Text style={styles.placeholder}>Option 2</Text>
+                                </View>
+                            ):(
+                                null
+                            )
+                        }
+                    </Animated.View>
                 </Animated.View>
             </View>
         </TouchableHighlight>
@@ -66,7 +77,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#b5ffce',
         width: '87%',
-        padding: 5
+        padding: 5,
+    },
+    selectOptionsContainer: {
+        height: 0
     },
     arrowIcon: {
         color: 'rgb(0, 0, 0)',
