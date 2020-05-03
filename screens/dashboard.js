@@ -1,7 +1,7 @@
 import  React, {useState} from 'react';
 import { View, Text, StyleSheet, ImageBackground, ScrollView, TextInput, TouchableHighlight } from 'react-native';
 import { useSelector, useDispatch } from "react-redux";
-import { Card, AccountsList, Balance, RecordsList, CustomModal, AccountForm } from '../components'
+import { PaymentMethodList, Balance, RecordsList, CustomModal, PaymentMethodForm } from '../components'
 import { database } from 'firebase';
 
 
@@ -45,7 +45,7 @@ export default function Dashboard({ navigation, route }){
         },
       ];
 
-      const accounts = [
+      const paymentMethods = [
           {
             name: 'Banamex',
             id: '00001',
@@ -76,10 +76,10 @@ export default function Dashboard({ navigation, route }){
     return(
         <ImageBackground source={require('../assets/images/bg2.jpg')} style={styles.container} blurRadius={2}>
             <CustomModal modalStatus={modalStatus} setModalStatus={setModalStatus} title="Add account" fixed={true}>
-                <AccountForm/>
+                <PaymentMethodForm uid={uid} setModalStatus={setModalStatus}/>
             </CustomModal>
             <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
-                <AccountsList accounts={null} toogleModal={toogleModal}/>
+                <PaymentMethodList paymentMethods={null} toogleModal={toogleModal}/>
                 <Balance balance={"13000"}/>
                 <RecordsList records={records}/>
                 <Text>{ uid }</Text>

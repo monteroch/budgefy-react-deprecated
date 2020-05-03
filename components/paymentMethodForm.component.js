@@ -1,13 +1,16 @@
 import React, {useState} from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableHighlight, Picker } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableHighlight, Picker, Keyboard } from 'react-native';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { global } from '../shared/styles';
+import { addPaymentMethod } from '../firebase';
 
-export default function AccountForm(){
+export default function PaymentMethodForm({setModalStatus, uid}){
 
+    const [ accountType, setAccountType ] = useState('cash');
     const [ accountName, setAccountName ] = useState('');
     const [ accountNumber, setAccountNumber ] = useState('');
-    const [ accountType, setAccountType ] = useState('cash');
+    const [ amount, setAmount ] = useState(0);
 
     const accountTypes = [
         { type: 'credit-card', label: 'Credit Card' }, 
@@ -17,7 +20,15 @@ export default function AccountForm(){
     ];
 
     const handleSubmit = () =>{
-        console.log("Button has been pressed");
+        let paymentMethod = ({
+            type: accountType,
+            name: accountName,
+            number: accountNumber,
+            amount: amount
+        });
+        addPaymentMethod(paymentMethod, uid);
+        Keyboard.dismiss();
+        setModalStatus(false);
     }
 
     return(
@@ -56,9 +67,11 @@ export default function AccountForm(){
                         <SimpleLineIcons name='credit-card' size={22} style={global.modalFormIcon}/>
                         <TextInput
                             style={global.modalTextInput}
-                            onChangeText={ console.log('Change')}
+                            type='number'
+                            onChangeText={(value) => setAccountNumber(value)}
                             placeholder='Account number'
                             placeholderTextColor='rgba(0, 0, 0, 0.8)'
+                            keyboardType='numeric'
                             value={accountNumber}
                         />
                     </View>
@@ -66,6 +79,18 @@ export default function AccountForm(){
                     null
                 )
             }
+            <View style={global.modalInputContainer}>
+                <MaterialCommunityIcons name='currency-usd' size={22} style={global.modalFormIcon}/>
+                <TextInput
+                    style={global.modalTextInput}
+                    type='number'
+                    onChangeText={value => setAmount(value)}
+                    placeholder='Amount'
+                    placeholderTextColor='rgba(0, 0, 0, 0.8)'
+                    keyboardType='numeric'
+                    value={amount}
+                />
+            </View>
             <TouchableHighlight style={global.modalButton} onPress={handleSubmit}>
                 <Text style={global.modalButtonText}>ADD ACCOUNT</Text>
             </TouchableHighlight>

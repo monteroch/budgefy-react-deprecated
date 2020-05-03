@@ -4,22 +4,22 @@ import Card from './card.component';
 import { global }  from '../shared/styles';
 import { MaterialIcons } from '@expo/vector-icons';
 
-export default function AccountsList({accounts, toogleModal}){
+export default function PaymentMethodList({paymentMethods, toogleModal}){
     
-    const addAcount = () => {
+    const addAcount = ({}) => {
         console.log('Adding account');
     };
 
     return(
-        (accounts)? (
+        (paymentMethods)? (
             <Card width={380}>
                 <Text style={styles.cardTitle}>List of accounts</Text>
                 <ScrollView style={styles.accountsScroll} horizontal={true} showsHorizontalScrollIndicator={false}>
                     {
-                        accounts.map(account => (
-                            <Card key={account.id} style={styles.accountItem} width={105}>
-                                <Text style={styles.cardTitle}>{account.name}</Text>
-                                <Text style={styles.cardTitle}>${account.balance}</Text>
+                        paymentMethods.map(paymentMethod => (
+                            <Card key={paymentMethod.id} style={styles.accountItem} width={105}>
+                                <Text style={styles.cardTitle}>{paymentMethod.name}</Text>
+                                <Text style={styles.cardTitle}>${paymentMethod.balance}</Text>
                             </Card>
                         ))
                     }
@@ -28,7 +28,7 @@ export default function AccountsList({accounts, toogleModal}){
         ):(
             <Card width={380}>
                 <View style={styles.emptyAccountsContainer}>
-                    <Text style={[global.textMainColor, styles.addAccountTitle]}>Add account?</Text>
+                    <Text style={[global.textMainColor, styles.addAccountTitle]}>Add payment method?</Text>
                     <TouchableHighlight style={styles.buttonContainer} onPress={ addAcount }>
                         <MaterialIcons name='add' size={26} onPress={() => toogleModal(true)} style={[ styles.addAccountIcon, global.textMainColor]}/>
                     </TouchableHighlight>
