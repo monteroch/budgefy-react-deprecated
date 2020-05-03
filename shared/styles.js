@@ -78,7 +78,8 @@ export const global = StyleSheet.create({
         borderColor: 'rgba(0, 0, 0, 0.3)',
         height: 40,
         width: '85%',
-        padding: 5
+        padding: 5,
+        paddingLeft: 9
     },
     modalButton:{
         width: '80%',

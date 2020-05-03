@@ -5,11 +5,16 @@ import { global } from '../shared/styles';
 
 export default function AccountForm(){
 
-    const accountTypes = ['credit-card', 'savings-account', 'cash', 'market-coupons'];
-
     const [ accountName, setAccountName ] = useState('');
     const [ accountNumber, setAccountNumber ] = useState('');
     const [ accountType, setAccountType ] = useState('cash');
+
+    const accountTypes = [
+        { type: 'credit-card', label: 'Credit Card' }, 
+        { type: 'savings-account', label: 'Savings Account' }, 
+        { type: 'cash', label: 'Cash' }, 
+        { type: 'market-coupons', label: 'Market Coupons' }
+    ];
 
     const handleSubmit = () =>{
         console.log("Button has been pressed");
@@ -18,8 +23,10 @@ export default function AccountForm(){
     return(
         <View style={global.modalFormContainer}>
             <View style={global.modalInputContainer}>
+                <SimpleLineIcons name='grid' size={22} style={global.modalFormIcon}/>
                 <View style={styles.pickerWrapper}>
                     <Picker
+                        label='Type of account'
                         style={styles.pickerStyle}
                         itemStyle={styles.pickerItem}
                         selectedValue={accountType}
@@ -27,7 +34,7 @@ export default function AccountForm(){
                     >
                         {
                             accountTypes.map((type, index) => (
-                                <Picker.Item key={index} label={type} value={type} />
+                                <Picker.Item key={index} label={type.label} value={type.type} />
                             ))
                         }
                     </Picker>
@@ -43,16 +50,22 @@ export default function AccountForm(){
                     value={accountName}
                 />
             </View>
-            <View style={global.modalInputContainer}>
-                <SimpleLineIcons name='credit-card' size={22} style={global.modalFormIcon}/>
-                <TextInput
-                    style={global.modalTextInput}
-                    onChangeText={ console.log('Change')}
-                    placeholder='Account number'
-                    placeholderTextColor='rgba(0, 0, 0, 0.8)'
-                    value={accountNumber}
-                />
-            </View>
+            {
+                (accountType === 'credit-card' ||  accountType === 'savings-account')?(
+                    <View style={global.modalInputContainer}>
+                        <SimpleLineIcons name='credit-card' size={22} style={global.modalFormIcon}/>
+                        <TextInput
+                            style={global.modalTextInput}
+                            onChangeText={ console.log('Change')}
+                            placeholder='Account number'
+                            placeholderTextColor='rgba(0, 0, 0, 0.8)'
+                            value={accountNumber}
+                        />
+                    </View>
+                ):(
+                    null
+                )
+            }
             <TouchableHighlight style={global.modalButton} onPress={handleSubmit}>
                 <Text style={global.modalButtonText}>ADD ACCOUNT</Text>
             </TouchableHighlight>
@@ -64,22 +77,17 @@ export default function AccountForm(){
 const styles = StyleSheet.create({
     pickerWrapper: {
         width: '85%',
-        padding: 5,
         borderWidth: 1,
         borderColor: 'rgba(0, 0, 0, 0.3)',
-        height: 40
+        height: 40,
+        justifyContent: 'center'
     },
     pickerStyle: {
         width: '100%',
         borderWidth: 1,
         borderColor: 'red',
         height: 40,
-        margin: 5,
-        color: 'black'
-    },
-    pickerItem:{
-        width: '80%',
-        color: 'red'
+        color: 'rgba(0, 0, 0, 0.7)'
     }
 });
 
