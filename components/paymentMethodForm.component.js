@@ -10,7 +10,7 @@ export default function PaymentMethodForm({setModalStatus, uid}){
     const [ accountType, setAccountType ] = useState('cash');
     const [ accountName, setAccountName ] = useState('');
     const [ accountNumber, setAccountNumber ] = useState('');
-    const [ amount, setAmount ] = useState(0);
+    const [ balance, setBalance ] = useState('');
 
     const accountTypes = [
         { type: 'credit-card', label: 'Credit Card' }, 
@@ -24,7 +24,7 @@ export default function PaymentMethodForm({setModalStatus, uid}){
             type: accountType,
             name: accountName,
             number: accountNumber,
-            amount: amount
+            balance: balance
         });
         addPaymentMethod(paymentMethod, uid);
         Keyboard.dismiss();
@@ -84,11 +84,11 @@ export default function PaymentMethodForm({setModalStatus, uid}){
                 <TextInput
                     style={global.modalTextInput}
                     type='number'
-                    onChangeText={value => setAmount(value)}
+                    onChangeText={value => setBalance(value)}
                     placeholder='Amount'
                     placeholderTextColor='rgba(0, 0, 0, 0.8)'
                     keyboardType='numeric'
-                    value={amount}
+                    value={balance}
                 />
             </View>
             <TouchableHighlight style={global.modalButton} onPress={handleSubmit}>

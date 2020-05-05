@@ -1,18 +1,32 @@
-import  React, {useState} from 'react';
+import  React, {useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ImageBackground, ScrollView, TextInput, TouchableHighlight } from 'react-native';
 import { useSelector, useDispatch } from "react-redux";
 import { PaymentMethodList, Balance, RecordsList, CustomModal, PaymentMethodForm } from '../components'
-import { database } from 'firebase';
+import * as firebase from 'firebase';
 
 
 export default function Dashboard({ navigation, route }){
 
     const uid = route.params.uid;
     const [modalStatus, setModalStatus ] = useState(false);
+    const [user, setUser ] = useState({});
+    const [paymentMethods, setPaymentMethods ] = useState(null);
 
     const toogleModal = (status) => {
         setModalStatus(status);
     }
+
+    useEffect(() => {
+        //get userInfo
+        var userData = firebase.database().ref('users/' + uid );
+        userData.on('value', function(snapshot) {
+            setUser(snapshot.val());
+            console.log('The user is: ', user);
+            let pm = user.paymentMethods;
+            const pmArray = Object.values(pm)
+            setPaymentMethods(pmArray);
+        });
+    }, [])
 
     const records = [
         {
@@ -45,33 +59,33 @@ export default function Dashboard({ navigation, route }){
         },
       ];
 
-      const paymentMethods = [
-          {
-            name: 'Banamex',
-            id: '00001',
-            balance: 2000
-          },
-          {
-            name: 'HSBC',
-            id: '00002',
-            balance: 3000
-        },
-        {
-            name: 'Amex',
-            id: '00003',
-            balance: 7000
-        },
-        {
-            name: 'Bancomer',
-            id: '00004',
-            balance: 4000
-        },
-        {
-            name: 'Cash',
-            id: '00005',
-            balance: 700
-        },
-      ]
+    //   const paymentMethods = [
+    //       {
+    //         name: 'Banamex',
+    //         id: '00001',
+    //         balance: 2000
+    //       },
+    //       {
+    //         name: 'HSBC',
+    //         id: '00002',
+    //         balance: 3000
+    //     },
+    //     {
+    //         name: 'Amex',
+    //         id: '00003',
+    //         balance: 7000
+    //     },
+    //     {
+    //         name: 'Bancomer',
+    //         id: '00004',
+    //         balance: 4000
+    //     },
+    //     {
+    //         name: 'Cash',
+    //         id: '00005',
+    //         balance: 700
+    //     },
+    //   ]
 
     return(
         <ImageBackground source={require('../assets/images/bg2.jpg')} style={styles.container} blurRadius={2}>
@@ -79,7 +93,7 @@ export default function Dashboard({ navigation, route }){
                 <PaymentMethodForm uid={uid} setModalStatus={setModalStatus}/>
             </CustomModal>
             <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
-                <PaymentMethodList paymentMethods={null} toogleModal={toogleModal}/>
+                <PaymentMethodList paymentMethods={paymentMethods} toogleModal={toogleModal}/>
                 <Balance balance={"13000"}/>
                 <RecordsList records={records}/>
                 <Text>{ uid }</Text>

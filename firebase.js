@@ -61,11 +61,11 @@ var firebaseConfig = {
   };
 
   export const addPaymentMethod = (paymentMethod, uid) => {
-    firebase.database().ref('users/' + uid + '/paymentMethods').set({
+    firebase.database().ref('users/' + uid + '/paymentMethods').push({
       type: paymentMethod.type,
       name: paymentMethod.name,
       number: paymentMethod.number,
-      amount: paymentMethod.amount
+      balance: paymentMethod.balance
     });
   }
 //   firebase.analytics();
