@@ -22,9 +22,9 @@ export default function Dashboard({ navigation, route }){
         userData.on('value', function(snapshot) {
             setUser(snapshot.val());
             console.log('The user is: ', user);
-            let pm = user.paymentMethods;
-            const pmArray = Object.values(pm)
-            setPaymentMethods(pmArray);
+            // let pm = user.paymentMethods;
+            // const pmArray = Object.values(pm)
+            // setPaymentMethods(pmArray);
         });
     }, [])
 
