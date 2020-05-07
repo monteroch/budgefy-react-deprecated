@@ -11,7 +11,7 @@ export default function PaymentMethodList({paymentMethods, toogleModal}){
     };
 
     return(
-        (paymentMethods)? (
+        (paymentMethods !== null && paymentMethods !== undefined)? (
             <Card width={380}>
                 <Text style={styles.cardTitle}>List of accounts</Text>
                 <ScrollView style={styles.accountsScroll} horizontal={true} showsHorizontalScrollIndicator={false}>

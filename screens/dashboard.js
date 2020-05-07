@@ -9,7 +9,7 @@ export default function Dashboard({ navigation, route }){
 
     const uid = route.params.uid;
     const [modalStatus, setModalStatus ] = useState(false);
-    const [user, setUser ] = useState({});
+    const [user, setUser ] = useState(null);
     const [paymentMethods, setPaymentMethods ] = useState(null);
 
     const toogleModal = (status) => {
@@ -17,16 +17,22 @@ export default function Dashboard({ navigation, route }){
     }
 
     useEffect(() => {
-        //get userInfo
         var userData = firebase.database().ref('users/' + uid );
         userData.on('value', function(snapshot) {
             setUser(snapshot.val());
-            console.log('The user is: ', user);
-            // let pm = user.paymentMethods;
-            // const pmArray = Object.values(pm)
-            // setPaymentMethods(pmArray);
         });
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        if(user !== null){
+            console.log('The user is: ', user);
+            if(user.paymentMethods !== undefined){
+                let pm = user.paymentMethods;
+                const pmArray = Object.values(pm)
+                setPaymentMethods(pmArray);
+            }
+        }
+    }, [user]);
 
     const records = [
         {
@@ -119,3 +125,10 @@ const styles = StyleSheet.create({
 });
 
 {/* https://medium.com/@rossbulat/react-native-carousels-with-horizontal-scroll-views-60b0587a670c */}
+{
+    /* 
+        C:\Users\Dell\AppData\Local\Android\Sdk/emulator/emulator @Pixel_3a_XL_API_28
+        C:\Users\Dell\AppData\Local\Android\Sdk/emulator/emulator @Nexus_6_API_28
+    */
+
+}

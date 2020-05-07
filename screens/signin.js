@@ -9,8 +9,8 @@ import { loginRequest } from '../redux/actions/index';
 
 export default function SignIn({ navigation }){
 
-    const [ email, setEmail ] = useState('');
-    const [ password, setPassword ] = useState('');
+    const [ email, setEmail ] = useState('christian@test.com');
+    const [ password, setPassword ] = useState('holamundo');
     let scaleValue = new Animated.Value(0); // declare an animated value [1]
 
     const cardScale = scaleValue.interpolate({  //[2]
