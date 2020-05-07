@@ -24,14 +24,16 @@ export default function Dashboard({ navigation, route }){
     }, []);
 
     useEffect(() => {
+        let mounted = true;
         if(user !== null){
             console.log('The user is: ', user);
-            if(user.paymentMethods !== undefined){
+            if(user.paymentMethods !== undefined && mounted === true){
                 let pm = user.paymentMethods;
                 const pmArray = Object.values(pm)
                 setPaymentMethods(pmArray);
             }
         }
+        return () => mounted = false;
     }, [user]);
 
     const records = [
