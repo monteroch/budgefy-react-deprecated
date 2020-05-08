@@ -1,13 +1,19 @@
 const initialState = {
-    uid: null
+    user: null,
+    error: null
 };
 
 function rootReducer(state = initialState, action){
     switch(action.type){
-        case "LOGIN":
+        case "LOGIN_SUCCESS":
             return{
                 ...state,
-                uid: action.payload
+                user: action.payload
+            }
+        case "LOGIN_FAILURE":
+            return{
+                ...state,
+                error: action.payload
             }
         default:
             return state;
