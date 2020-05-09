@@ -4,6 +4,8 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import { global } from '../shared/styles';
 import { createUser } from '../firebase';
+import { useDispatch } from "react-redux";
+import { registerRequest } from '../redux/actions/index';
 
 export default function SignUp({ navigation }){
 
@@ -12,9 +14,16 @@ export default function SignUp({ navigation }){
     const [ password, setPassword ] = useState('');
     const [ passwordConfirmation, setPasswordConfirmation ] = useState('');
 
+    const dispatch = useDispatch();
+
     const handleSubmit = () => {
         console.log(`The email and password are: ${email}: ${password}`);
-        let uid = createUser(email, password, fullname);
+        dispatch(registerRequest({
+            email: email,
+            password: password,
+            fullname: fullname
+        }));
+        // let uid = createUser(email, password, fullname);
         setFullname("");
         setEmail("");
         setPassword("");

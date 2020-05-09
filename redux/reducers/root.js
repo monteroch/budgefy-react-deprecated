@@ -15,6 +15,21 @@ function rootReducer(state = initialState, action){
                 ...state,
                 error: action.payload
             }
+        case "REGISTER_FAILURE":
+            return{
+                ...state,
+                error: action.payload
+            }
+        case "SAVE_USER_SUCCESS":
+            return{
+                ...state,
+                user: action.payload
+            }
+        case "SAVE_USER_FAILURE":
+            return{
+                ...state,
+                error: action.payload
+            }
         default:
             return state;
     }
